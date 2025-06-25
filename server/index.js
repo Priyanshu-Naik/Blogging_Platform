@@ -12,7 +12,7 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:5173', 
-    credentials: 'include'
+    credentials: true
 }));
 app.use(bodyParser.json({extended : true}));
 app.use(bodyParser.urlencoded({ extended: true }));

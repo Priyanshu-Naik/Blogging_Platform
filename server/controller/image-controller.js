@@ -1,15 +1,35 @@
+import grid from 'gridfs-stream';
+import mongoose from 'mongoose';
+
 const url = 'http://localhost:8000';
 
+let gfs, gridFsBucket;
+const conn = mongoose.connection;
+conn.once('open', () => {
+  gridFsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+    bucketName: 'photos'
+  });
+  gfs = grid(conn.db, mongoose.mongo);
+  gfs.collection('photos');
+})
+
 export const uploadImage = (request, response) => {
-  // console.log(JSON.stringify(Object.keys(response), null, 2))
-  // console.log(response)
   console.log('Uploaded file:', request.body.file);
 
-  // uncomment this
   if (!request.body.file) {
     return response.status(404).json({ error: "File upload failed or file not found" });
   }
 
   const imageUrl = `${url}/file/${request.body.name}`;
-  return response.status(200).json( imageUrl ); // return in structured format
-};
+  return response.status(200).json( imageUrl ); 
+}
+
+export const getImage = async (request,response) => {
+  try {
+    const file = await gfs.files.findOne({filename: request.params.filename});
+    const readStream = gridFsBucket.openDownloadStream(file._id);
+    readStream.pipe(response);
+  } catch (error) {
+    return response.status(500).json({msg: error.message })
+  }
+}

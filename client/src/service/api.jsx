@@ -6,9 +6,9 @@ const API_URL = 'http://localhost:8000';
 const axiosInstances = axios.create({
     baseURL: API_URL,
     timeout: 10000,
-    headers: {
-        "content-type": "application/json"
-    }
+    // headers: {
+    //     "content-type": "application/json"
+    // }
 })
 
 axiosInstances.interceptors.request.use(
@@ -73,16 +73,15 @@ const processError = (error) => {
 }
 
 
-
 const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URL)) {
     API[key] = (body, showUploadProgress, showDownloadProgress) => {
-
-        return axiosInstances({
+        const config = {
             method: value.method,
             url: value.url,
             data: body,
+            headers: value.headers || { 'Content-Type': 'application/json' },
             responseType: value.responseType,
             onUploadProgress: function (progressEvent) {
                 if (showUploadProgress) {
@@ -96,7 +95,14 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
                     showDownloadProgress(percentageCompleted);
                 }
             }
-        })
+        };
+
+        // ✅ Override Content-Type only for file upload
+        if (key === 'uploadFile') {
+            delete config.headers; // Let Axios set it properly with boundary
+        }
+
+        return axiosInstances(config);
     };
 }
 // console.log((SERVICE_URL), API);

@@ -8,19 +8,19 @@ const username = process.env.DB_USERNAME;
 const password = process.env.DB_PASSWORD;
 
 const storage = new GridFsStorage({
-  url: `mongodb+srv://${username}:${password}@cluster1.9xqeuub.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`, 
+  url: `mongodb+srv://${username}:${password}@cluster1.9xqeuub.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`,
   file: (req, file) => {
-    const match = ["image/png", "image/jpg", "image/jpeg"]; 
+    const match = ["image/png", "image/jpg", "image/jpeg"];
 
-    if (match.indexOf(file.mimetype) === -1) { 
-      return `${Date.now()}-blog-${file.originalname}`;
+    if (!match.includes(file.mimetype)) {
+      return null; 
     }
 
     return {
       bucketName: "photos",
-      filename: `${Date.now()}-blog-${file.originalname}`
+      filename: `${Date.now()}-blog-${file.originalname}`,
     };
-  }
+  },
 });
 
 const upload = multer({ storage });

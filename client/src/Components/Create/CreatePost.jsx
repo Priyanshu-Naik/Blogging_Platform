@@ -25,28 +25,30 @@ export default function CreatePost() {
   useEffect(() => {
     const uploadImage = async () => {
       if (!!file) {
+
+        console.log('Uploading:', file);
+        console.log('Is File?', file instanceof File);
+
         const data = new FormData();
-        data.append('name', file.name);
         data.append('file', file);
-  
+        data.append('name', file.name);
+
         try {
           const response = await API.uploadFile(data);
           console.log("Response checking", response)
           setProduct(prev => ({
             ...prev,
-            image: response.data, 
+            image: response.data,
             category: location.search?.split('=')[1] || 'All',
-            username: account.username || 'guest', 
+            username: account.username || 'guest',
           }));
         } catch (err) {
           console.error('Image upload failed:', err);
         }
       }
-    }; 
+    };
     uploadImage();
   }, [file]);
-
-  // const dropRef = useRef();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -62,13 +64,13 @@ export default function CreatePost() {
   return (
     <div className="max-w-3xl mx-auto mt-16 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Create New Product</h2>
-      {product.image && (
+      {/* {product.image && (
         <img
           src={product.image}
           alt="Preview"
           className="mb-4 w-full h-64 object-cover rounded-lg"
         />
-      )}
+      )} */}
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Product Name */}
         <div>
@@ -143,7 +145,6 @@ export default function CreatePost() {
               className="hidden"
               id="fileInput"
               onChange={(e) => {
-                // console.log(e.target.files[0])
                 setFile(e.target.files[0])
               }}
             />
