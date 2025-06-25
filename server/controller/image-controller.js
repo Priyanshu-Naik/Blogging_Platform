@@ -14,13 +14,13 @@ conn.once('open', () => {
 })
 
 export const uploadImage = (request, response) => {
-  console.log('Uploaded file:', request.body.file);
+  console.log('Uploaded file:', request.file);
 
-  if (!request.body.file) {
+  if (!request.file) {
     return response.status(404).json({ error: "File upload failed or file not found" });
   }
 
-  const imageUrl = `${url}/file/${request.body.name}`;
+  const imageUrl = `${url}/file/${request.file.filename}`;
   return response.status(200).json( imageUrl ); 
 }
 

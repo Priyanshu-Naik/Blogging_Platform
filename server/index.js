@@ -11,10 +11,12 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
     credentials: true
 }));
-app.use(bodyParser.json({extended : true}));
+app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', Router);
 
