@@ -6,9 +6,6 @@ const API_URL = 'http://localhost:8000';
 const axiosInstances = axios.create({
     baseURL: API_URL,
     timeout: 10000,
-    // headers: {
-    //     "content-type": "application/json"
-    // }
 })
 
 axiosInstances.interceptors.request.use(
@@ -96,9 +93,8 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             }
         };
 
-        // ✅ Correctly handle headers:
         if (key === 'uploadFile') {
-            // Don't set headers at all; let Axios/browsers set boundary for FormData
+            
         } else {
             config.headers = value.headers || { 'Content-Type': 'application/json' };
         }
@@ -106,5 +102,5 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
         return axiosInstances(config);
     };
 }
-// console.log((SERVICE_URL), API);
+
 export { API };
