@@ -1,35 +1,26 @@
-import grid from 'gridfs-stream';
 import mongoose from 'mongoose';
+import { GridFSBucket } from 'mongodb';
+import dotenv from 'dotenv';
 
-const url = 'http://localhost:8000';
+dotenv.config();
 
-let gfs, gridFsBucket;
-const conn = mongoose.connection;
-conn.once('open', () => {
-  gridFsBucket = new mongoose.mongo.GridFSBucket(conn.db, {
-    bucketName: 'photos'
-  });
-  gfs = grid(conn.db, mongoose.mongo);
-  gfs.collection('photos');
-})
+const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster1.9xqeuub.mongodb.net/?retryWrites=true&w=majority`;
 
-export const uploadImage = (request, response) => {
-  console.log('Uploaded file:', request.file);
-
-  if (!request.file) {
-    return response.status(404).json({ error: "File upload failed or file not found" });
-  }
-
-  const imageUrl = `${url}/file/${request.file.filename}`;
-  return response.status(200).json( imageUrl ); 
-}
-
-export const getImage = async (request,response) => {
+export const getImage = async (req, res) => {
   try {
-    const file = await gfs.files.findOne({filename: request.params.filename});
-    const readStream = gridFsBucket.openDownloadStream(file._id);
-    readStream.pipe(response);
+    const connection = await mongoose.createConnection(mongoURI).asPromise();
+    const bucket = new GridFSBucket(connection.db, {
+      bucketName: 'photos',
+    });
+
+    const downloadStream = bucket.openDownloadStreamByName(req.params.filename);
+
+    downloadStream.on('error', () => {
+      return res.status(404).json({ error: 'File not found' });
+    });
+
+    downloadStream.pipe(res);
   } catch (error) {
-    return response.status(500).json({msg: error.message })
+    res.status(500).json({ error: 'Something went wrong' });
   }
-}
+};

@@ -38,7 +38,7 @@ export default function CreatePost() {
           console.log("Response checking", response)
           setProduct(prev => ({
             ...prev,
-            image: response.data,
+            image: response.data.filename,
             category: location.search?.split('=')[1] || 'All',
             username: account.username || 'guest',
           }));
@@ -64,13 +64,13 @@ export default function CreatePost() {
   return (
     <div className="max-w-3xl mx-auto mt-16 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
       <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Create New Product</h2>
-      {/* {product.image && (
+      {product.image && (
         <img
-          src={product.image}
-          alt="Preview"
+          src={`http://localhost:8000/file/${product.image}`}
+          alt="Uploaded"
           className="mb-4 w-full h-64 object-cover rounded-lg"
         />
-      )} */}
+      )}
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Product Name */}
         <div>

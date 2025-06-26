@@ -81,7 +81,6 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             method: value.method,
             url: value.url,
             data: body,
-            headers: value.headers || { 'Content-Type': 'application/json' },
             responseType: value.responseType,
             onUploadProgress: function (progressEvent) {
                 if (showUploadProgress) {
@@ -97,9 +96,11 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
             }
         };
 
-        // ✅ Override Content-Type only for file upload
+        // ✅ Correctly handle headers:
         if (key === 'uploadFile') {
-            delete config.headers; // Let Axios set it properly with boundary
+            // Don't set headers at all; let Axios/browsers set boundary for FormData
+        } else {
+            config.headers = value.headers || { 'Content-Type': 'application/json' };
         }
 
         return axiosInstances(config);

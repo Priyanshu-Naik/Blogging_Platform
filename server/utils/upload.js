@@ -11,9 +11,9 @@ const storage = new GridFsStorage({
   url: `mongodb+srv://${username}:${password}@cluster1.9xqeuub.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1`,
   file: (req, file) => {
     const match = ["image/png", "image/jpg", "image/jpeg"];
-
+    
     if (!match.includes(file.mimetype)) {
-      return null; 
+      return Promise.reject(new Error("Invalid file type"));
     }
 
     return {
