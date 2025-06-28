@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { API } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
 
 const InitialPost = {
-  name: '',
+  title: '',
   description: '',
-  price: '',
+  // price: '',
   category: '',
   image: '',
   createdDate: new Date()
@@ -21,6 +21,7 @@ export default function CreatePost() {
   const { account } = useContext(DataContext)
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const uploadImage = async () => {
@@ -55,9 +56,14 @@ export default function CreatePost() {
     setProduct({ ...product, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Product Created:', product);
+    let response = await API.createPost(product);
+    if (response.isSuccess){
+      console.log('Product Created:', product);
+      navigate('/');
+    }
+    // console.log('Product Created:', product);
     // Connect this to backend or reset form if needed
   };
 
@@ -74,12 +80,12 @@ export default function CreatePost() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Product Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Product Name</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Product Title</label>
           <input
-            name="name"
+            name="title"
             type="text"
             required
-            value={product.name}
+            value={product.title}
             onChange={(e) => handleChange(e)}
             className="w-full mt-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -98,7 +104,7 @@ export default function CreatePost() {
           />
         </div>
 
-        {/* Price */}
+        {/* Price
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Price ($)</label>
           <input
@@ -109,7 +115,7 @@ export default function CreatePost() {
             onChange={(e) => handleChange(e)}
             className="w-full mt-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-        </div>
+        </div> */}
 
         {/* Category */}
         <div>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_NOTIFICATION_MESSAGES, SERVICE_URL } from '../constraints/config';
+import { getAccessToken } from '../utils/common_utils';
 
 const API_URL = 'http://localhost:8000';
 
@@ -74,33 +75,35 @@ const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URL)) {
     API[key] = (body, showUploadProgress, showDownloadProgress) => {
+        const token = getAccessToken();
+        const isUpload = key === 'uploadFile';
+
         const config = {
             method: value.method,
             url: value.url,
             data: body,
             responseType: value.responseType,
-            onUploadProgress: function (progressEvent) {
+            headers: {
+                ...(isUpload ? {} : { 'Content-Type': 'application/json' }),
+                ...(token && { Authorization: token })
+            },
+            onUploadProgress: (progressEvent) => {
                 if (showUploadProgress) {
-                    let percentageCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    const percentageCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     showUploadProgress(percentageCompleted);
                 }
             },
-            onDownloadProgress: function (progressEvent) {
+            onDownloadProgress: (progressEvent) => {
                 if (showDownloadProgress) {
-                    let percentageCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+                    const percentageCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     showDownloadProgress(percentageCompleted);
                 }
             }
         };
 
-        if (key === 'uploadFile') {
-            
-        } else {
-            config.headers = value.headers || { 'Content-Type': 'application/json' };
-        }
-
         return axiosInstances(config);
     };
 }
+
 
 export { API };
