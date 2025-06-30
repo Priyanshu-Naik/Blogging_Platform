@@ -1,7 +1,9 @@
-// BlogCard.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function BlogCard({ post }) {
+    
+
     return (
         <div className="relative rounded-xl overflow-hidden shadow-md group transition-transform hover:scale-105 duration-300 h-full">
             <img
@@ -15,10 +17,12 @@ export default function BlogCard({ post }) {
                 <div className="text-sm opacity-80 mb-1">{post.username}</div>
                 <div className="text-sm opacity-80 mb-1">
                     {post.description?.split(' ').slice(0, 20).join(' ')}{post.description?.split(' ').length > 20 && '...'}
-                </div>                
-                <button className="mt-2 px-3 py-1 text-sm bg-white text-black rounded-md w-fit">
-                    View Details
-                </button>
+                </div>
+                <Link to={`/post/${post._id}-${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+                    <button className="mt-2 px-3 py-1 text-sm bg-white text-black rounded-md w-fit">
+                        View Details
+                    </button>
+                </Link>
             </div>
         </div>
     );

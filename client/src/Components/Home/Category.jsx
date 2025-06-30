@@ -1,9 +1,13 @@
 import React from 'react'
 import { ArrowUpRight } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export default function Category() {
+    const navigate = useNavigate();
+    
     const categories = [
         {
             id: 1,
@@ -41,11 +45,11 @@ export default function Category() {
                 {/* Header Section */}
                 <div className="flex items-center justify-between mb-8">
                     <h2 className="text-2xl font-bold text-white">Article categories</h2>
-                    <Link to='/'> 
-                        <button className="text-white hover:text-black text-sm font-medium border border-gray-300 rounded-full px-4 py-2 hover:bg-gray-100 ">
-                            Browse all articles
-                        </button>
-                    </Link>
+                    <button 
+                    onClick={() => navigate('/more-blogs')}
+                    className="text-white hover:text-black text-sm font-medium border border-gray-300 rounded-full px-4 py-2 hover:bg-gray-100 ">
+                        Browse all articles
+                    </button>
                 </div>
 
                 {/* Categories */}

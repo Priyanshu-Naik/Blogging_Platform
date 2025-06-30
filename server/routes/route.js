@@ -3,7 +3,7 @@ import express from 'express';
 import { user_controller, login_User } from '../controller/user-controller.js';
 import { uploadFile } from '../controller/uploadController.js';
 import { getImage } from '../controller/image-controller.js';
-import { createPost, getAllPosts } from '../controller/postController.js';
+import { createPost, getAllPosts, getPostById } from '../controller/postController.js';
 import { authenticateToken } from '../controller/jwtController.js';
 
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get('/file/:filename', getImage);
 
 router.post('/create', authenticateToken, createPost);
 router.get('/posts', authenticateToken, getAllPosts);
+router.get('/post/:id', getPostById);
 
 
 export default router;

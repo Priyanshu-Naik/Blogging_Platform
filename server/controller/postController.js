@@ -22,3 +22,13 @@ export const getAllPosts = async (req,res) => {
       return res.status(500).json({ msg: error.message })
    }
 }
+
+export const getPostById = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        if (!post) return res.status(404).json({ msg: 'Post not found' });
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(500).json({ msg: 'Error retrieving post' });
+    }
+}

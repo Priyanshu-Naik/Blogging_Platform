@@ -9,6 +9,7 @@ import Header from './Components/Header/Header'
 import CreatePost from './Components/Create/CreatePost'
 import MoreBlogs from './Components/Home/post/MoreBlogs'
 import CategoryPosts from './Components/Home/post/CategoryPosts'
+import BlogDetails from './Components/Home/post/BlogDetails'
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ?
@@ -42,6 +43,10 @@ const App = () => {
 
             <Route path="/category/:category" element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
               <Route path="/category/:category" element={<CategoryPosts/>} />
+            </Route>
+
+            <Route path="/post/:idSlug" element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path="/post/:idSlug" element={<BlogDetails/>} />
             </Route>
 
           </Routes>

@@ -74,13 +74,15 @@ const processError = (error) => {
 const API = {};
 
 for (const [key, value] of Object.entries(SERVICE_URL)) {
-    API[key] = (body, showUploadProgress, showDownloadProgress) => {
+    API[key] = (body, showUploadProgress, showDownloadProgress, dynamicParams) => {
         const token = getAccessToken();
         const isUpload = key === 'uploadFile';
 
+        const url = typeof value.url === 'function' ? value.url(dynamicParams) : value.url;
+
         const config = {
             method: value.method,
-            url: value.url,
+            url: url,
             data: body,
             responseType: value.responseType,
             headers: {
