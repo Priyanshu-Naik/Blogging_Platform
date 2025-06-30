@@ -8,7 +8,6 @@ const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 
 export const getImage = async (req, res) => {
   try {
-    // Option A: Reuse connection
     if (mongoose.connection.readyState === 0) {
       await mongoose.connect(mongoURI);
     }
@@ -19,7 +18,6 @@ export const getImage = async (req, res) => {
 
     const downloadStream = bucket.openDownloadStreamByName(req.params.filename);
 
-    // Optional: Set headers
     res.setHeader('Content-Type', 'image/jpeg');
 
     downloadStream.on('error', () => {

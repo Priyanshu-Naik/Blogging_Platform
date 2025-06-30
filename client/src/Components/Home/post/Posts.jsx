@@ -8,6 +8,7 @@ export default function Posts() {
     const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
 
+
     useEffect(() => {
         const fetchData = async () => {
             let response = await API.getAllPosts();
