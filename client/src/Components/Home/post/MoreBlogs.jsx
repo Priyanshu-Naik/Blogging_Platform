@@ -1,34 +1,34 @@
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BlogCard from './BlogCards';
-
-const moreBlogs = [
-  {
-    category: 'Sport',
-    title: '100 kilometers by bicycle in the mountains',
-    image: 'https://source.unsplash.com/400x600/?cycling,mountain',
-    colSpan: 'col-span-1',
-    rowSpan: 'row-span-2',
-  },
-  {
-    category: 'Travel',
-    title: 'Where to go this summer?',
-    image: 'https://source.unsplash.com/400x600/?forest,road',
-    colSpan: 'col-span-1',
-    rowSpan: 'row-span-2',
-  },
-  // You can also re-include the previous 4 if you want full archive
-];
+import { API } from '../../../service/api';
 
 export default function MoreBlogs() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await API.getAllPosts();
+      if (response.isSuccess) {
+        setPosts(response.data);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
-      <h1 className="text-4xl font-bold mb-10">More <span className="text-blue-500">Blogs</span></h1>
+      <h1 className="text-4xl font-bold mb-10">
+        All <span className="text-blue-500">Blogs</span>
+      </h1>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-6 gap-6 auto-rows-[200px]">
-        {moreBlogs.map((card, index) => (
-          <BlogCard key={index} {...card} />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
+        {posts.length > 0 ? (
+          posts.map((post, idx) => <BlogCard key={idx} post={post} />)
+        ) : (
+          <div className="col-span-full text-center text-gray-400 text-lg">
+            No blogs found.
+          </div>
+        )}
       </div>
     </div>
   );
