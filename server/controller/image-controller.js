@@ -8,12 +8,19 @@ const mongoURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 
 export const getImage = async (req, res) => {
   try {
-    const connection = await mongoose.createConnection(mongoURI).asPromise();
-    const bucket = new GridFSBucket(connection.db, {
+    // Option A: Reuse connection
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(mongoURI);
+    }
+
+    const bucket = new GridFSBucket(mongoose.connection.db, {
       bucketName: 'photos',
     });
 
     const downloadStream = bucket.openDownloadStreamByName(req.params.filename);
+
+    // Optional: Set headers
+    res.setHeader('Content-Type', 'image/jpeg');
 
     downloadStream.on('error', () => {
       return res.status(404).json({ error: 'File not found' });
@@ -21,6 +28,7 @@ export const getImage = async (req, res) => {
 
     downloadStream.pipe(res);
   } catch (error) {
+    console.error('Download error:', error);
     res.status(500).json({ error: 'Something went wrong' });
   }
 };
