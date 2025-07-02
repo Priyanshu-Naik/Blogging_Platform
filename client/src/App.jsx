@@ -4,12 +4,18 @@ import { DataProvider } from './context/DataProvider'
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
 
 import Login from './Components/Account/Login'
-import Home from './Components/Home/Home'
+
 import Header from './Components/Header/Header'
+
 import CreatePost from './Components/Create/CreatePost'
 import MoreBlogs from './Components/Home/post/MoreBlogs'
 import CategoryPosts from './Components/Home/post/CategoryPosts'
 import BlogDetails from './Components/Home/post/BlogDetails'
+
+import Home from './Components/Home/Home'
+import About from './Components/Home/About'
+import Services from './Components/Home/Services'
+import Contact from './Components/Home/Contact'
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   return isAuthenticated ?
@@ -31,6 +37,18 @@ const App = () => {
 
             <Route path='/' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
               <Route path='/' element={<Home />} />
+            </Route>
+
+            <Route path='/about' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path='/about' element={<About />} />
+            </Route>
+
+            <Route path='/services' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path='/services' element={<Services />} />
+            </Route>
+
+            <Route path='/contact' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path='/contact' element={<Contact />} />
             </Route>
 
             <Route path='/create' element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
