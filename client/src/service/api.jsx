@@ -80,10 +80,12 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
 
         const url = typeof value.url === 'function' ? value.url(dynamicParams) : value.url;
 
+        // Build config
         const config = {
             method: value.method,
             url: url,
-            data: body,
+            ...(value.method !== 'GET' && value.method !== 'DELETE' && { data: body }),  // Avoid body on DELETE
+            ...(isUpload && { data: body }),  // But allow data for upload
             responseType: value.responseType,
             headers: {
                 ...(isUpload ? {} : { 'Content-Type': 'application/json' }),
@@ -106,6 +108,5 @@ for (const [key, value] of Object.entries(SERVICE_URL)) {
         return axiosInstances(config);
     };
 }
-
 
 export { API };

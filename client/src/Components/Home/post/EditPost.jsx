@@ -1,0 +1,67 @@
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { API } from '../../../service/api';
+
+export default function EditPost() {
+    const { id } = useParams();
+    const [post, setPost] = useState({ title: '', description: '', category: '' });
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await API.getPostById(null, null, null, id);
+            if (response.isSuccess) {
+                setPost(response.data);
+            }
+        };
+        fetchData();
+    }, [id]);
+
+    const handleChange = (e) => {
+        setPost({ ...post, [e.target.name]: e.target.value });
+    };
+
+    const handleUpdate = async () => {
+        const response = await API.updatePost(post, null, null, id);
+        if (response.isSuccess) {
+            alert('Post updated!');
+            navigate(`/post/${post._id}-${post.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`);
+        }
+    };
+
+    return (
+        <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
+            <div className="max-w-2xl mx-auto space-y-6">
+                <input
+                    type="text"
+                    name="title"
+                    value={post.title}
+                    onChange={handleChange}
+                    placeholder="Title"
+                    className="w-full p-3 rounded bg-gray-800 text-white"
+                />
+                <input
+                    type="text"
+                    name="category"
+                    value={post.category}
+                    onChange={handleChange}
+                    placeholder="Category"
+                    className="w-full p-3 rounded bg-gray-800 text-white"
+                />
+                <textarea
+                    name="description"
+                    value={post.description}
+                    onChange={handleChange}
+                    placeholder="Description"
+                    className="w-full p-3 rounded bg-gray-800 text-white h-60"
+                ></textarea>
+                <button
+                    onClick={handleUpdate}
+                    className="px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white"
+                >
+                    Update Post
+                </button>
+            </div>
+        </div>
+    );
+}

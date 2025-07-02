@@ -32,3 +32,26 @@ export const getPostById = async (req, res) => {
         res.status(500).json({ msg: 'Error retrieving post' });
     }
 }
+
+export const deletePost = async (req, res) => {
+  try {
+    const post = await Post.findByIdAndDelete(req.params.id);
+    if (!post) return res.status(404).json({ message: 'Post not found' });
+    res.status(200).json({ message: 'Post deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+export const updatePost = async (req, res) => {
+    try {
+        const updatedPost = await Post.findByIdAndUpdate(
+            req.params.id,
+            { $set: req.body },
+            { new: true }
+        );
+        res.status(200).json(updatedPost);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating post' });
+    }
+};

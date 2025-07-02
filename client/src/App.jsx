@@ -11,6 +11,7 @@ import CreatePost from './Components/Create/CreatePost'
 import MoreBlogs from './Components/Home/post/MoreBlogs'
 import CategoryPosts from './Components/Home/post/CategoryPosts'
 import BlogDetails from './Components/Home/post/BlogDetails'
+import EditPost from './Components/Home/post/EditPost'
 
 import Home from './Components/Home/Home'
 import About from './Components/Home/About'
@@ -65,6 +66,10 @@ const App = () => {
 
             <Route path="/post/:idSlug" element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
               <Route path="/post/:idSlug" element={<BlogDetails/>} />
+            </Route>
+
+            <Route path="/edit/:id" element={<PrivateRoute isAuthenticated={isAuthenticated} />}>
+              <Route path="/edit/:id" element={<EditPost/>} />
             </Route>
 
           </Routes>
