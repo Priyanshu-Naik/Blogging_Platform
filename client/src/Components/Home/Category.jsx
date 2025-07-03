@@ -14,49 +14,49 @@ export default function Category() {
             type: 'adventure',
             name: 'Adventure',
             description: 'Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget.',
-            image: '/images/travel.jpg'
+            image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 2,
             type: 'technology',
             name: 'Technology',
             description: 'Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta.',
-            image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+            image: 'https://images.unsplash.com/photo-1556742521-9713bf272865?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 3,
             type: 'lifestyle',
             name: 'Lifestyle',
             description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
-            image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80'
+            image: 'https://plus.unsplash.com/premium_photo-1725983645487-5ea02c65ecaf?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 4,
             type: 'music',
             name: 'Music',
             description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
-            image: 'https://images.unsplash.com/photo-1516528387618-afa90b13e000?auto=format&fit=crop&w=800&q=80'
+            image: 'https://images.unsplash.com/photo-1488376986648-2512dfc6f736?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 5,
             type: 'food',
             name: 'Food & Recipes',
             description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
-            image: 'https://images.unsplash.com/photo-1516528387618-afa90b13e000?auto=format&fit=crop&w=800&q=80'
+            image: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=820&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 6,
             type: 'film',
             name: 'Film & TV',
             description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
-            image: 'https://images.unsplash.com/photo-1516528387618-afa90b13e000?auto=format&fit=crop&w=800&q=80'
+            image: 'https://images.unsplash.com/photo-1518930107639-f4538ad82a00?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
-            id: 5,
+            id: 7,
             type: 'news',
             name: 'News & Politics',
             description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
-            image: 'https://images.unsplash.com/photo-1516528387618-afa90b13e000?auto=format&fit=crop&w=800&q=80'
+            image: 'https://images.unsplash.com/photo-1635942046031-041e9baea8bd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
     ];
 

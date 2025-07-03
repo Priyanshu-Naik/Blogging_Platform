@@ -7,22 +7,22 @@ const images = [
     subtitle: 'Discover breathtaking destinations and adventures around the world.',
   },
   {
-    src: '/images/Saint-Lucia-Tropical-Paradise-Island.jpg',
+    src: 'https://images.unsplash.com/photo-1633383718081-22ac93e3db65?q=80&w=1358&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: 'Tropical Escape',
     subtitle: 'Relax in the crystal clear waters of Saint Lucia.',
   },
   {
-    src: '/images/Cavern-Desktop-Wallpaper.jpeg',
+    src: 'https://images.unsplash.com/photo-1501159771943-cc9027db4d8b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: 'Mystical Caverns',
     subtitle: 'Explore the world beneath with awe and wonder.',
   },
   {
-    src: '/images/Uluru-Ayers-Rock.jpg',
+    src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: 'Outback Adventure',
     subtitle: 'Journey into the heart of Australia.',
   },
   {
-    src: '/images/Night-Road-Wallpaper.jpg',
+    src: 'https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     title: 'Midnight Drive',
     subtitle: 'Chase the stars on an endless road.',
   },
@@ -64,14 +64,6 @@ export default function Banner() {
               {/* Vignette border */}
               <div className="absolute inset-0 z-10 pointer-events-none">
                 <div className="w-full h-full rounded-lg bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.4)_100%)]" />
-              </div>
-
-              {/* Corners */}
-              <div className="absolute inset-0 pointer-events-none z-20">
-                <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-black/70 to-transparent rounded-full blur-xl" />
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-black/70 to-transparent rounded-full blur-xl" />
-                <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-black/70 to-transparent rounded-full blur-xl" />
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-black/70 to-transparent rounded-full blur-xl" />
               </div>
             </div>
           </div>
