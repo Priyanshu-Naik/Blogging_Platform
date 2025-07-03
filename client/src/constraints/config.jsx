@@ -30,6 +30,11 @@ export const SERVICE_URL = {
 
     getAllPosts: { url: '/posts', method: 'GET' },
     getPostById: { url: (params) => `/post/${params}`, method: 'GET' },
-    deletePost: { url: (id) => `/post/${id}`, method: 'DELETE'},
-    updatePost: { url: (id) => `/post/${id}`, method: 'PUT'}
+    deletePost: { url: (id) => `/post/${id}`, method: 'DELETE' },
+    updatePost: { url: (id) => `/post/${id}`, method: 'PUT' },
+
+    addComment: { url: '/comment', method: 'POST' },
+    getCommentsByPostId: { url: (postId) => `/comments/${postId}`, method: 'GET' },
+    deleteComment: { url: (id) => `/comment/${id}`, method: 'DELETE' },
+    updateComment: { url: (id) => `/comment/${id}`, method: 'PUT' },
 }
