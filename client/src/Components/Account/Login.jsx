@@ -14,13 +14,13 @@ const signupInitialValues = {
   password: ''
 }
 
-export default function LoginForm({isUserAuthenticated}) {
+export default function LoginForm({ isUserAuthenticated }) {
   const [Register, toggeleRegister] = useState('login');
   const [signup, setSignup] = useState(signupInitialValues);
   const [login, setLogin] = useState(loginInitialValues);
   const [error, setError] = useState('');
 
-  const { setAccount } = useContext(DataContext); 
+  const { setAccount } = useContext(DataContext);
 
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ export default function LoginForm({isUserAuthenticated}) {
   }
 
   const onValueChange = (e) => {
-    setLogin({...login, [e.target.name]: e.target.value });
+    setLogin({ ...login, [e.target.name]: e.target.value });
   }
 
   const signupUser = async () => {
@@ -40,7 +40,7 @@ export default function LoginForm({isUserAuthenticated}) {
       setSignup(signupInitialValues);
       toggeleRegister('login');
     } else {
-      console.error('Caught signup error:', error); 
+      console.error('Caught signup error:', error);
       setError('Something went wrong! Please try again');
     }
   }
@@ -48,21 +48,26 @@ export default function LoginForm({isUserAuthenticated}) {
   const toggleSignup = (e) => {
     Register === 'signup' ? toggeleRegister('login') : toggeleRegister('signup')
   }
-  
+
   const loginUser = async () => {
     let response = await API.userLogin(login);
-    if (response.isSuccess){
+    if (response.isSuccess) {
       setError('');
-      sessionStorage.setItem('accesstoken',`Bearer ${response.data.accesstoken}`);
-      sessionStorage.setItem('refreshtoken',`Bearer ${response.data.refreshtoken}`);
+      sessionStorage.setItem('accesstoken', `Bearer ${response.data.accesstoken}`);
+      sessionStorage.setItem('refreshtoken', `Bearer ${response.data.refreshtoken}`);
 
-      setAccount({username: response.data.username, name: response.data.name});
+      const user = {
+        username: response.data.username,
+        name: response.data.name,
+        _id: response.data._id  
+      };
 
+      localStorage.setItem('user', JSON.stringify(user)); 
+
+      setAccount(user);
       isUserAuthenticated(true);
-
       navigate('/');
-
-    }else{
+    } else {
       setError('Something went wrong! Please try again');
     }
   }
@@ -120,8 +125,9 @@ export default function LoginForm({isUserAuthenticated}) {
                 type="submit"
                 className="w-full px-4 py-2 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700"
                 onClick={(e) => {
-                  e.preventDefault(); 
-                  loginUser()}}
+                  e.preventDefault();
+                  loginUser()
+                }}
               >
                 Login
               </button>
@@ -174,7 +180,7 @@ export default function LoginForm({isUserAuthenticated}) {
                 type="submit"
                 className="w-full px-4 py-2 font-semibold text-white bg-blue-600 rounded-md hover:bg-blue-700"
                 onClick={(e) => {
-                  e.preventDefault();  
+                  e.preventDefault();
                   signupUser();
                 }}
               >

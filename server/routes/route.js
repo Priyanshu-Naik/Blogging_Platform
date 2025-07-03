@@ -16,9 +16,9 @@ router.get('/file/:filename', getImage);
 
 router.post('/create', authenticateToken, createPost);
 router.get('/posts', authenticateToken, getAllPosts);
-router.get('/post/:id', getPostById);
-router.delete('/post/:id', deletePost);
-router.put('/post/:id', updatePost);
+router.get('/post/:id',authenticateToken, getPostById);
+router.delete('/post/:id',authenticateToken, deletePost);
+router.put('/post/:id',authenticateToken, updatePost);
 
 
 export default router;

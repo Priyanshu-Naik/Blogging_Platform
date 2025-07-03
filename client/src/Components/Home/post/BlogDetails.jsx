@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // ✅ useParams was missing
+import { useParams, useNavigate } from 'react-router-dom';
 import { API } from '../../../service/api';
 
 export default function BlogDetails() {
@@ -7,6 +7,11 @@ export default function BlogDetails() {
     const id = idSlug.split('-')[0];
     const [post, setPost] = useState();
     const navigate = useNavigate();
+
+    const loggedInUsername = JSON.parse(localStorage.getItem('user'))?.username;
+
+    console.log("Logged-in User:", JSON.parse(localStorage.getItem('user')));
+    console.log("Username from post:", post?.username);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -24,7 +29,7 @@ export default function BlogDetails() {
             const response = await API.deletePost(null, null, null, id);
             if (response.isSuccess) {
                 alert("Post deleted!");
-                navigate('/'); // Go to home or posts page
+                navigate('/');
             }
         }
     };
@@ -32,6 +37,8 @@ export default function BlogDetails() {
     if (!post) {
         return <div className="text-center text-white py-20">Loading...</div>;
     }
+
+    const isAuthor = loggedInUsername === post.username;
 
     return (
         <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
@@ -46,20 +53,23 @@ export default function BlogDetails() {
                 <div className="text-sm text-gray-400 mb-8">by {post.username}</div>
                 <p className="text-lg leading-relaxed whitespace-pre-line">{post.description}</p>
 
-                <div className="mt-6 flex gap-4">
-                    <button
-                        onClick={() => navigate(`/edit/${post._id}`)}
-                        className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
-                    >
-                        Edit
-                    </button>
-                    <button
-                        onClick={handleDelete}
-                        className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
-                    >
-                        Delete
-                    </button>
-                </div>
+                {/* Only show Edit/Delete if user is author */}
+                {isAuthor && (
+                    <div className="mt-6 flex gap-4">
+                        <button
+                            onClick={() => navigate(`/edit/${post._id}`)}
+                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                        >
+                            Edit
+                        </button>
+                        <button
+                            onClick={handleDelete}
+                            className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
