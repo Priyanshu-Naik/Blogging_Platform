@@ -59,7 +59,7 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let response = await API.createPost(product);
-    if (response.isSuccess){
+    if (response.isSuccess) {
       console.log('Product Created:', product);
       navigate('/');
     }
@@ -115,9 +115,12 @@ export default function CreatePost() {
             className="w-full mt-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select</option>
-            <option value="electronics">Electronics</option>
-            <option value="clothing">Clothing</option>
-            <option value="books">Books</option>
+            <option value="adventure">Adventure</option>
+            <option value="technology">Technology</option>
+            <option value="lifestyle">Lifestyle</option>
+            <option value="music">Music</option>
+            <option value="film">Flim & TV</option>
+            <option value="news">News & Politics</option>
           </select>
         </div>
 

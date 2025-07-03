@@ -65,9 +65,12 @@ export default function EditPost() {
                         className="w-full px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option value="">Select</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="books">Books</option>
+                        <option value="adventure">Adventure</option>
+                        <option value="technology">Technology</option>
+                        <option value="lifestyle">Lifestyle</option>
+                        <option value="music">Music</option>
+                        <option value="film">Flim & TV</option>
+                        <option value="news">News & Politics</option>
                     </select>
                 </div>
                 <textarea
