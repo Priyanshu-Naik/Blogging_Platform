@@ -45,7 +45,7 @@ export default function EditPost() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
+        <div className="mt-16 min-h-screen bg-gray-950 text-white px-6 py-12">
             <div className="max-w-2xl mx-auto space-y-6">
                 <input
                     type="text"

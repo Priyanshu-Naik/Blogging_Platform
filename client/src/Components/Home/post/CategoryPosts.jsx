@@ -21,7 +21,7 @@ export default function CategoryPosts() {
   }, [category]);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
+    <div className="min-h-screen bg-gray-950 text-white px-6 py-12 mt-16">
       <h1 className="text-4xl font-bold mb-10">
         {category.charAt(0).toUpperCase() + category.slice(1)} Blogs
       </h1>

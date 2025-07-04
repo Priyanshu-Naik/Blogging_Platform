@@ -16,7 +16,7 @@ export default function MoreBlogs() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
+    <div className="mt-16 min-h-screen bg-gray-950 text-white px-6 py-12">
       <h1 className="text-4xl font-bold mb-10">
         All <span className="text-blue-500">Blogs</span>
       </h1>

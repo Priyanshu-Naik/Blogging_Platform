@@ -43,7 +43,7 @@ export default function BlogDetails() {
     const isAuthor = loggedInUsername === post.username;
 
     return (
-        <div className="min-h-screen bg-gray-950 text-white px-6 py-12">
+        <div className="min-h-screen bg-gray-950 text-white px-6 py-12 mt-16">
             <div className="max-w-4xl mx-auto">
                 <img
                     src={`http://localhost:8000/file/${post.image}`}

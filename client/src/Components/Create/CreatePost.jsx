@@ -68,7 +68,7 @@ export default function CreatePost() {
 
   return (
     <div className="max-w-3xl mx-auto mt-16 p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Create New Product</h2>
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Create New Post</h2>
       {product.image && (
         <img
           src={`http://localhost:8000/file/${product.image}`}
@@ -79,7 +79,7 @@ export default function CreatePost() {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Product Name */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Product Title</label>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-200">Post Title</label>
           <input
             name="title"
             type="text"
@@ -159,7 +159,7 @@ export default function CreatePost() {
             type="submit"
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            Create Product
+            Create Post
           </button>
         </div>
       </form>
