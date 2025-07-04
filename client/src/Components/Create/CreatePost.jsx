@@ -7,7 +7,6 @@ import { DataContext } from '../../context/DataProvider';
 const InitialPost = {
   title: '',
   description: '',
-  // price: '',
   category: '',
   image: '',
   createdDate: new Date()
