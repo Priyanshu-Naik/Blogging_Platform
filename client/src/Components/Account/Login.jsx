@@ -71,7 +71,7 @@ export default function LoginForm({ isUserAuthenticated }) {
       {/* Content */}
       <div className="relative z-10 w-full max-w-2xl mx-4 md:mx-auto bg-white bg-opacity-90 rounded-2xl shadow-2xl p-8 md:p-12">
         <h1 className="text-3xl font-bold text-center text-blue-600 mb-4">
-          Welcome to YourBlog
+          Welcome to BlogNest
         </h1>
         <p className="text-center text-gray-600 mb-6">
           {Register === 'login' ? 'Log in to continue writing and sharing.' : 'Join our community and start blogging!'}

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
@@ -23,7 +24,7 @@ export default function Header() {
             alt="Flowbite Logo"
           />
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Flowbite
+            BlogNest
           </span>
         </Link>
 
@@ -63,16 +64,18 @@ export default function Header() {
 
         {/* Navigation Menu */}
         <div
-          className={`${
-            isMenuOpen ? 'block' : 'hidden'
-          } w-full md:flex md:w-auto md:order-1`}
+          className={`${isMenuOpen ? 'block' : 'hidden'
+            } w-full md:flex md:w-auto md:order-1`}
           id="navbar"
         >
           <ul className="flex flex-col mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700 p-4 md:p-0">
             <li>
               <Link
                 to="/"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:hover:text-white"
+                className={`block py-2 px-3 rounded md:hover:bg-transparent md:hover:text-blue-700 ${location.pathname === '/'
+                  ? 'text-blue-700 font-semibold dark:text-blue-400'
+                  : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white'
+                  }`}
               >
                 Home
               </Link>
@@ -80,7 +83,10 @@ export default function Header() {
             <li>
               <Link
                 to="/about"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:hover:text-white"
+                className={`block py-2 px-3 rounded md:hover:bg-transparent md:hover:text-blue-700 ${location.pathname === '/about'
+                  ? 'text-blue-700 font-semibold dark:text-blue-400'
+                  : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white'
+                  }`}
               >
                 About
               </Link>
@@ -88,7 +94,10 @@ export default function Header() {
             <li>
               <Link
                 to="/services"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:hover:text-white"
+                className={`block py-2 px-3 rounded md:hover:bg-transparent md:hover:text-blue-700 ${location.pathname === '/services'
+                  ? 'text-blue-700 font-semibold dark:text-blue-400'
+                  : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white'
+                  }`}
               >
                 Services
               </Link>
@@ -96,7 +105,10 @@ export default function Header() {
             <li>
               <Link
                 to="/contact"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 md:dark:hover:bg-transparent dark:hover:text-white"
+                className={`block py-2 px-3 rounded md:hover:bg-transparent md:hover:text-blue-700 ${location.pathname === '/contact'
+                    ? 'text-blue-700 font-semibold dark:text-blue-400'
+                    : 'text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white'
+                  }`}
               >
                 Contact
               </Link>

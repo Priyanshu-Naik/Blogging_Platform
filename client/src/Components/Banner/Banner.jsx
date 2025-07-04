@@ -3,28 +3,28 @@ import React, { useState, useEffect } from 'react';
 const images = [
   {
     src: '/images/Palm-HD-Wallpaper-43930.jpg',
-    title: 'Welcome to Paradise',
-    subtitle: 'Discover breathtaking destinations and adventures around the world.',
+    title: 'Write Your Own Escape',
+    subtitle: 'Let your words become windows to faraway lands, untold adventures, and personal awakenings—where every blog is a new journey waiting to unfold.',
   },
   {
     src: 'https://images.unsplash.com/photo-1633383718081-22ac93e3db65?q=80&w=1358&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Tropical Escape',
-    subtitle: 'Relax in the crystal clear waters of Saint Lucia.',
+    title: 'Stories from Every Shore',
+    subtitle: 'From sun-drenched beaches to bustling coastal towns, share vibrant moments, cultural insights, and unforgettable experiences that define your journey.',
   },
   {
     src: 'https://images.unsplash.com/photo-1501159771943-cc9027db4d8b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Mystical Caverns',
-    subtitle: 'Explore the world beneath with awe and wonder.',
+    title: 'Uncover Hidden Thoughts',
+    subtitle: 'Peel back the layers of your mind and let your reflections flow—honest, vulnerable, and bold. Explore the power of storytelling in its purest form.',
   },
   {
     src: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Outback Adventure',
-    subtitle: 'Journey into the heart of Australia.',
+    title: 'Voices from the Wild',
+    subtitle: 'Let your blog echo with the pulse of the wilderness—untamed landscapes, spontaneous detours, and the unforgettable stories they inspire.',
   },
   {
     src: 'https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-    title: 'Midnight Drive',
-    subtitle: 'Chase the stars on an endless road.',
+    title: 'Midnight Musings',
+    subtitle: 'In the stillness of night, when the world sleeps and thoughts come alive, pour your dreams, doubts, and desires into stories that shimmer with introspection.',
   },
 ];
 
@@ -48,23 +48,22 @@ export default function Banner() {
         {images.map((img, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
           >
             <div className="relative w-full h-full">
               <img src={img.src} alt={`Slide ${index}`} className="w-full h-full object-cover" />
 
               {/* Overlay Text */}
               {index === current && (
-                <div className="absolute inset-0 z-30 flex flex-col justify-center items-center text-center text-white px-4">
+                <div className="absolute inset-0 z-30 flex flex-col justify-end items-start text-left text-white px-8 pb-10">
                   <h2 className="text-3xl md:text-5xl font-bold mb-2 drop-shadow-lg">{img.title}</h2>
                   <p className="text-lg md:text-xl max-w-2xl drop-shadow-md">{img.subtitle}</p>
                 </div>
               )}
 
-              {/* Vignette border */}
-              <div className="absolute inset-0 z-10 pointer-events-none">
-                <div className="w-full h-full rounded-lg bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0.4)_100%)]" />
-              </div>
+              {/* Black gradient overlay */}
+              <div className="absolute inset-0 z-20 bg-gradient-to-t from-black via-transparent to-transparent" />
             </div>
           </div>
         ))}

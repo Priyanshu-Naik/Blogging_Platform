@@ -13,49 +13,49 @@ export default function Category() {
             id: 1,
             type: 'adventure',
             name: 'Adventure',
-            description: 'Curabitur aliquet quam id dui posuere blandit. Vivamus magna justo, lacinia eget.',
+            description: 'Real journeys. Raw experiences. Your next escape begins here.',
             image: 'https://images.unsplash.com/photo-1528543606781-2f6e6857f318?q=80&w=930&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 2,
             type: 'technology',
             name: 'Technology',
-            description: 'Sed porttitor lectus nibh. Cras ultricies ligula sed magna dictum porta.',
+            description: 'Exploring the digital age—one innovation at a time.',
             image: 'https://images.unsplash.com/photo-1556742521-9713bf272865?q=80&w=3087&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 3,
             type: 'lifestyle',
             name: 'Lifestyle',
-            description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+            description: 'Stories on balance, habits, and living well.',
             image: 'https://plus.unsplash.com/premium_photo-1725983645487-5ea02c65ecaf?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 4,
             type: 'music',
             name: 'Music',
-            description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+            description: 'Notes, nostalgia, and the soundtracks of life.',
             image: 'https://images.unsplash.com/photo-1488376986648-2512dfc6f736?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 5,
             type: 'food',
             name: 'Food & Recipes',
-            description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+            description: 'From your kitchen to the world—flavorful stories that stick.',
             image: 'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=820&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 6,
             type: 'film',
             name: 'Film & TV',
-            description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+            description: 'Behind the screen—reviews, reactions, and reflections.',
             image: 'https://images.unsplash.com/photo-1518930107639-f4538ad82a00?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
         {
             id: 7,
             type: 'news',
             name: 'News & Politics',
-            description: 'Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+            description: 'Voices on current affairs, culture, and change.',
             image: 'https://images.unsplash.com/photo-1635942046031-041e9baea8bd?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         },
     ];
@@ -87,7 +87,7 @@ export default function Category() {
                                         <ArrowUpRight className="w-5 h-5" />
                                     </div>
                                     <p className="text-sm mt-1 opacity-80">
-                                        {cat.description?.split(' ').slice(0, 15).join(' ')}{cat.description?.split(' ').length > 15 && '...'}
+                                        {cat.description?.split(' ').slice(0, 5).join(' ')}{cat.description?.split(' ').length > 3 && '...'}
                                     </p>
                                 </div>
                             </div>
