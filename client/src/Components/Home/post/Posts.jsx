@@ -25,7 +25,7 @@ export default function Posts() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
                 {posts && posts.length > 0 ? (
-                    posts.slice(0, 4).map((post, index) => (
+                    posts.slice(0, 3).map((post, index) => (
                         <BlogCard key={index} post={post} />
                     ))
                 ) : (

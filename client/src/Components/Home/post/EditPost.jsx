@@ -68,6 +68,7 @@ export default function EditPost() {
                         <option value="adventure">Adventure</option>
                         <option value="technology">Technology</option>
                         <option value="lifestyle">Lifestyle</option>
+                        <option value="food">Food & Recipe</option>
                         <option value="music">Music</option>
                         <option value="film">Flim & TV</option>
                         <option value="news">News & Politics</option>

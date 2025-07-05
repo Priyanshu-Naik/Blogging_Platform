@@ -99,7 +99,7 @@ export default function CreatePost() {
             rows={3}
             value={product.description}
             onChange={(e) => handleChange(e)}
-            className="w-full mt-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full mt-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -117,6 +117,7 @@ export default function CreatePost() {
             <option value="adventure">Adventure</option>
             <option value="technology">Technology</option>
             <option value="lifestyle">Lifestyle</option>
+            <option value="food">Food & Recipe</option>
             <option value="music">Music</option>
             <option value="film">Flim & TV</option>
             <option value="news">News & Politics</option>
