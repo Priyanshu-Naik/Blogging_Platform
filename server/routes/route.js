@@ -9,6 +9,10 @@ import { authenticateToken } from '../controller/jwtController.js';
 
 const router = express.Router();
 
+router.get('/', (req, res) => {
+    return res.send(200).json({msg: 'server connected'})
+})
+
 router.post('/signup', user_controller);
 router.post('/login', login_User);
 
