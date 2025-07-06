@@ -16,23 +16,9 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
-app.options('*', cors({
-  origin: 'https://blogging-platform-szt7.vercel.app',
-  credentials: true
-}));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', Router);
-
-console.log("✅ Registered routes:");
-app._router.stack
-  .filter(r => r.route)
-  .forEach(r => console.log(`  ${Object.keys(r.route.methods).join(',').toUpperCase()} ${r.route.path}`));
-
-// Optional: This will catch unexpected middleware paths too
-app._router.stack
-  .filter(r => r.name === 'router' && r.regexp)
-  .forEach(r => console.log('🧩 Router regex pattern:', r.regexp));
 
 app.get('/',(req, res) => {
     res.send({

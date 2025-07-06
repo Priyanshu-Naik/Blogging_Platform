@@ -9,30 +9,22 @@ import { authenticateToken } from '../controller/jwtController.js';
 
 const router = express.Router();
 
-try {
-  router.post('/signup', user_controller);
-  router.post('/login', login_User);
+router.post('/signup', user_controller);
+router.post('/login', login_User);
 
-  router.post('/file/upload', uploadFile);
-  router.get('/file/:filename', getImage);
+router.post('/file/upload', uploadFile);
+router.get('/file/:filename', getImage);
 
-  router.post('/create', authenticateToken, createPost);
-  router.get('/posts', authenticateToken, getAllPosts);
-  router.get('/post/:id', authenticateToken, getPostById);
-  router.delete('/post/:id', authenticateToken, deletePost);
-  router.put('/post/:id', authenticateToken, updatePost);
+router.post('/create', authenticateToken, createPost);
+router.get('/posts', authenticateToken, getAllPosts);
+router.get('/post/:id',authenticateToken, getPostById);
+router.delete('/post/:id',authenticateToken, deletePost);
+router.put('/post/:id',authenticateToken, updatePost);
 
-  router.post('/comment', addComment);
-  router.get('/comments/:postId', getCommentsByPostId);
-  router.delete('/comment/:id', deleteComment);
-  router.put('/comment/:id', updateComment);
-
-  console.log("✅ All routes loaded successfully.");
-
-} catch (err) {
-  console.error("❌ Error in defining routes:", err.message);
-  throw err; // Make sure app fails early if this happens
-}
+router.post('/comment', addComment);
+router.get('/comments/:postId', getCommentsByPostId);
+router.delete('/comment/:id', deleteComment);
+router.put('/comment/:id', updateComment);
 
 
 export default router;
