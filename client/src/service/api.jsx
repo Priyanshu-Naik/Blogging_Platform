@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_NOTIFICATION_MESSAGES, SERVICE_URL } from '../constraints/config';
 import { getAccessToken } from '../utils/common_utils';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://blogging-platform-flax.vercel.app';
 
 const axiosInstances = axios.create({
     baseURL: API_URL,
