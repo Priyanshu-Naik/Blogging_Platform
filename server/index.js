@@ -16,6 +16,10 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }));
+app.options('*', cors({
+  origin: 'https://blogging-platform-szt7.vercel.app',
+  credentials: true
+}));
 app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', Router);
