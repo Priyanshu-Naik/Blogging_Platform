@@ -31,7 +31,7 @@ export const uploadFile = async (req, res) => {
           res.status(200).json({
             message: 'File uploaded successfully',
             filename: filename,
-            imageUrl: `http://localhost:8000/file/${filename}`
+            imageUrl: `https://blogging-platform-dl3w.onrender.com/file/${filename}`
           });
         }
       });
