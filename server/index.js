@@ -20,6 +20,13 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', Router);
 
+app.get('/',(req, res) => {
+    res.send({
+        activeStatus: true,
+        error: false,
+    })
+})
+
 const PORT = 8000;
 const USERNAME = process.env.DB_USERNAME;
 const PASSWORD = process.env.DB_PASSWORD;
